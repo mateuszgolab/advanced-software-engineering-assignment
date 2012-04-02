@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ASE.eap" />
     <None Include="SoftwareDesignDescription.docx" />
     <None Include="SystemRequirementsSpecification.docx" />
     <None Include="TestPlanDocument.docx" />
