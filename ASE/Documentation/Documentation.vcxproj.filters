@@ -4,5 +4,6 @@
     <None Include="SoftwareDesignDescription.docx" />
     <None Include="SystemRequirementsSpecification.docx" />
     <None Include="TestPlanDocument.docx" />
+    <None Include="ASE.eap" />
   </ItemGroup>
 </Project>
