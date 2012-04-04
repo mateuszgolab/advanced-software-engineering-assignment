@@ -74,7 +74,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Consumer.cpp" />
+    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelManager.cpp" />
+    <ClCompile Include="Order.cpp" />
+    <ClCompile Include="Producer.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="SimulationManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Consumer.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="Order.h" />
+    <ClInclude Include="Producer.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="SimulationManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
