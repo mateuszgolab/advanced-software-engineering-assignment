@@ -14,17 +14,20 @@ class Consumer
 {
 
 public:
-	Consumer();
+	Consumer(int id, double cash, double salary);
 	virtual ~Consumer();
 
-	Order orderProducts();
+	Order makeOrder(int productID, double cost);
 	void payProducer(double price, int producerID);
 	void receiveSalary();
 	void setSalary(double salary);
+	void checkNewProduct(int productID);
+	double getCash();
 
 private:
 	double cash;
 	double salary;
+	double id;
 
 };
 #endif // !defined(EA_4C8BA131_6174_46eb_84BC_52EFDD82A7BD__INCLUDED_)

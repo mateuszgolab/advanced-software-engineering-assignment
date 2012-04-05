@@ -36,15 +36,23 @@ void Producer::payFactoryStartUp(){
 
 bool Producer::realizeOrder(Order order){
 
-	return  NULL;
+	return false;
 }
 
 
-void Producer::receiveCash(double cash){
-
+void Producer::receiveCash(double cash)
+{
+	if(cash < 0) return;
+	this->cash += cash;
+	
 }
 
 
 void Producer::sellProducts(vector<Product> products){
 
+}
+
+double Producer::getCash()
+{
+	return cash;
 }

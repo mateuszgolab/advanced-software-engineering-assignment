@@ -8,7 +8,8 @@
 #include "Consumer.h"
 
 
-Consumer::Consumer(){
+Consumer::Consumer(int id, double cash, double salary) : id(id), cash(cash), salary(salary) 
+{
 
 }
 
@@ -22,9 +23,9 @@ Consumer::~Consumer(){
 
 
 
-Order Consumer::orderProducts(){
-
-	return  Order();
+Order Consumer::makeOrder(int productID, double cost)
+{
+	
 }
 
 
@@ -41,3 +42,14 @@ void Consumer::receiveSalary(){
 void Consumer::setSalary(double salary){
 
 }
+
+void Consumer::checkNewProduct(int productID)
+{
+
+}
+
+double Consumer::getCash()
+{
+	return cash;
+}
+
