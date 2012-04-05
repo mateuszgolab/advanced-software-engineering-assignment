@@ -32,3 +32,8 @@ Product Factory::manufactureProduct(){
 
 	return  Product();
 }
+
+FactoryState Factory::getState()
+{
+	return FactoryState::IDLE;
+}

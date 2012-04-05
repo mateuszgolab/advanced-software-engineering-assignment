@@ -8,12 +8,22 @@
 #include "Order.h"
 
 
-Order::Order(){
+Order::Order() : consumerID(0), producerID(0), cost(0), numberOfProducts(0), productID(0)
+{
 
 }
 
-
+Order::Order(int cID, int pID, double c, int n, int pType) : consumerID(cID), producerID(pID), cost(c), numberOfProducts(n), productType(pType)
+{
+}
 
 Order::~Order(){
 
 }
+
+int Order::getNumberOfProducts()
+{
+	return numberOfProducts;
+}
+
+

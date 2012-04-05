@@ -25,6 +25,7 @@ public:
 	void saveResults(std::string fileName);
 	void showResults();
 	void startSimulation();
+	static int getBestOffer(int productType);
 
 private:
 	Model model;

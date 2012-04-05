@@ -9,6 +9,7 @@
 #define EA_4170E875_EBC1_4fb4_8B79_FF9085BE2E54__INCLUDED_
 
 #include"Product.h"
+#include"FactoryState.h"
 
 class Factory
 {
@@ -18,12 +19,14 @@ public:
 	virtual ~Factory();
 	int getIdleTime();
 	Product manufactureProduct();
+	FactoryState getState();
 
 private:
 	double constructionCost;
 	double costPerCycle;
 	double efficiency;
 	int idleTime;
+	FactoryState state;
 
 };
 #endif // !defined(EA_4170E875_EBC1_4fb4_8B79_FF9085BE2E54__INCLUDED_)

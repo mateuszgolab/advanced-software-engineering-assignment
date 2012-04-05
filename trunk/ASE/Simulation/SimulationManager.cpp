@@ -64,3 +64,8 @@ void SimulationManager::showResults(){
 void SimulationManager::startSimulation(){
 
 }
+
+int SimulationManager::getBestOffer(int productType)
+{
+
+}
