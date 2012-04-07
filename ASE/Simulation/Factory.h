@@ -16,10 +16,12 @@ class Factory
 
 public:
 	Factory();
+	Factory(double efficiency);
 	virtual ~Factory();
-	int getIdleTime();
-	Product manufactureProduct();
-	FactoryState getState();
+	int getIdleTime() const;
+	FactoryState getState() const;
+	double manufacture();
+	void setProduct(Product product, int orderID);
 
 private:
 	double constructionCost;
@@ -27,6 +29,8 @@ private:
 	double efficiency;
 	int idleTime;
 	FactoryState state;
+	int orderID;
+	Product product;
 
 };
 #endif // !defined(EA_4170E875_EBC1_4fb4_8B79_FF9085BE2E54__INCLUDED_)

@@ -53,5 +53,8 @@
     <ClCompile Include="FactoryTest.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SimulationManagerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

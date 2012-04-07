@@ -11,7 +11,7 @@
 using namespace std;
 
 Model::Model() : cashPerCustomer(DEFAULT_CUSTOMER_CASH), cashPerProducer(DEFAULT_PRODUCER_CASH), consumerCashOscilation(DEFAULT_CASH_OSCILATION), numberOfCustomers(DEFAULT_NUMBER_OF_CUSTOMERS), 
-	numberOfProducers(DEFAULT_NUMBER_OF_PRODUCERS), customerSalary(DEFAULT_CUSTOMER_SALARY), factoryConstructionCost(DEFAULT_FACTORY_CONSTRUCTION_COST), factoryRunningCost(DEFAULT_FACTORY_RUNNING_COST), 
+	numberOfProducers(DEFAULT_NUMBER_OF_PRODUCERS), consumerSalary(DEFAULT_CUSTOMER_SALARY), factoryConstructionCost(DEFAULT_FACTORY_CONSTRUCTION_COST), factoryRunningCost(DEFAULT_FACTORY_RUNNING_COST), 
 	idleFactoryStartUpCost(DEFAULT_IDLE_FACTORY_STARTUP_COST), producerCashOscilation(DEFAULT_CASH_OSCILATION), queueOrdersThreshold(DEFAULT_QUEUE_THRESHOLD)
 {
 	
@@ -75,4 +75,29 @@ void Model::setProductManufacturingTime(vector<int> cycles){
 
 void Model::setQueueOrdersThreshold(int threshold){
 
+}
+
+double Model::getCashPerConsumer()
+{
+	return cashPerCustomer;
+}
+
+double Model::getCashPerProducer()
+{
+	return cashPerProducer;
+}
+
+double Model::getConsumerSalary()
+{
+	return consumerSalary;
+}
+
+int Model::getNumberOfCustomers()
+{
+	return numberOfCustomers;
+}
+
+int Model::getNumberOfProducers()
+{
+	return numberOfProducers;
 }
