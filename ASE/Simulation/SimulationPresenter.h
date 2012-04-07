@@ -18,6 +18,7 @@ public:
 	virtual ~SimulationPresenter();
 
 	void showSimulationState();
+	void showBankruptcy(int producerID);
 
 private:
 	Model model;

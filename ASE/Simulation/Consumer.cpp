@@ -8,6 +8,7 @@
 #include "Consumer.h"
 #include "SimulationManager.h"
 
+using namespace std;
 
 int Consumer::idGenerator = 0;
 
@@ -24,14 +25,17 @@ Consumer::~Consumer(){
 
 
 
-
-
-Order Consumer::makeOrder(int productType)
+void Consumer::makeOrder(int productType)
 {
-	Offer offer = SimulationManager::getBestOffer(productType);
-	int n = cash / offer.getPrice();
+	vector<Offer> offers = SimulationManager::getOffers();
 
-	return Order(id, offer.getProducerID(), n * offer.getPrice(), n , productType);
+	for(int i = 0; i < offers.size(); i++)
+	{
+		int n = cash / offers[i].getPrice();
+		Order order(id, offers[i].getProducerID(), n * offers[i].getPrice(), n , productType);
+		if(SimulationManager::isProducerInterested(order)) 
+			break;
+	}
 }
 
 

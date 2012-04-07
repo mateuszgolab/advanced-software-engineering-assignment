@@ -18,7 +18,7 @@ public:
 	Consumer(double cash, double salary);
 	virtual ~Consumer();
 
-	Order makeOrder(int productID);
+	void makeOrder(int productID);
 	void payProducer(double price, int producerID);
 	void receiveSalary();
 	void setSalary(double salary);
