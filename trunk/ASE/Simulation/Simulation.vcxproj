@@ -79,21 +79,26 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
+    <ClCompile Include="Offer.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Producer.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="SimulationManager.cpp" />
+    <ClCompile Include="SimulationPresenter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Consumer.h" />
+    <ClInclude Include="ConsumerState.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FactoryState.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="Offer.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Producer.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="SimulationManager.h" />
+    <ClInclude Include="SimulationPresenter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

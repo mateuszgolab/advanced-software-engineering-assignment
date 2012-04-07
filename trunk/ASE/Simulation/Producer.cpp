@@ -10,19 +10,17 @@
 
 using namespace std;
 
-Producer::Producer(){
+int Producer::idGenerator = 0;
+int Producer::threshold = 50;
 
+Producer::Producer(double cash) : cash(cash), numberOfProducts(0)
+{
+	id = ++idGenerator;
 }
-
-
 
 Producer::~Producer(){
 
 }
-
-
-
-
 
 Factory Producer::buildFactory(){
 	return Factory();
@@ -48,11 +46,30 @@ void Producer::receiveCash(double cash)
 }
 
 
-void Producer::sellProducts(vector<Product> products){
 
-}
 
 double Producer::getCash()
 {
 	return cash;
+}
+
+double Producer::getProductPrice(int productType)
+{
+	return productsPrices[productType];
+}
+
+int Producer::getID()
+{
+	return id;
+}
+
+bool Producer::acceptOrder(Order & order)
+{
+	if(numberOfProducts + order.getNumberOfProducts() < threshold) 
+	{
+		orders.push_back(order);
+		return true;
+	}
+
+	return false;
 }

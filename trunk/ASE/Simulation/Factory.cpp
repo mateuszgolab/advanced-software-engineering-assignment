@@ -6,12 +6,18 @@
 ///////////////////////////////////////////////////////////
 
 #include "Factory.h"
+#include "SimulationManager.h"
 
 
-Factory::Factory(){
+Factory::Factory() : efficiency(SimulationManager::randomNumberGenerator(0.0, 2.0))
+{
 
 }
 
+Factory::Factory(double efficiency) : efficiency(efficiency)
+{
+
+}
 
 
 Factory::~Factory(){
@@ -19,21 +25,23 @@ Factory::~Factory(){
 }
 
 
-
-
-
-int Factory::getIdleTime(){
+int Factory::getIdleTime() const
+{
 
 	return 0;
 }
 
-
-Product Factory::manufactureProduct(){
-
-	return  Product();
+double Factory::manufacture()
+{
+	return 0.0;
 }
 
-FactoryState Factory::getState()
+FactoryState Factory::getState() const
 {
 	return FactoryState::IDLE;
+}
+
+void Factory::setProduct(Product product, int orderID)
+{
+
 }

@@ -16,16 +16,24 @@ class Order
 
 public:
 	Order();
-	Order(int consumerID, int producerID, double cost, int numberOfProducts, int productID);
+	Order(int consumerID, int producerID, double cost, int numberOfProducts, int productType);
 	virtual ~Order();
 	int getNumberOfProducts();
+	Product getProduct(int i);
+	int getID();
+	int getProducerID();
+
 
 private:
+	int id;	
 	int consumerID;
-	double cost;
 	int producerID;
-	int numberOfProducts;
-	int productID;
+	double cost;
+	double levelOfCompletness;
+	int productType;
+	std::vector<Product> products;
+
+	static int idGenerator;
 
 };
 #endif // !defined(EA_F4525D7B_9509_4d44_9828_F56249EB31DD__INCLUDED_)

@@ -9,25 +9,30 @@
 #define EA_4C8BA131_6174_46eb_84BC_52EFDD82A7BD__INCLUDED_
 
 #include"Order.h"
+#include"ConsumerState.h"
 
 class Consumer
 {
 
 public:
-	Consumer(int id, double cash, double salary);
+	Consumer(double cash, double salary);
 	virtual ~Consumer();
 
-	Order makeOrder(int productID, double cost);
+	Order makeOrder(int productID);
 	void payProducer(double price, int producerID);
 	void receiveSalary();
 	void setSalary(double salary);
-	void checkNewProduct(int productID);
 	double getCash();
+	ConsumerState getState();
+	
 
 private:
 	double cash;
 	double salary;
 	double id;
+	ConsumerState state;
+	
+	static int idGenerator;
 
 };
 #endif // !defined(EA_4C8BA131_6174_46eb_84BC_52EFDD82A7BD__INCLUDED_)

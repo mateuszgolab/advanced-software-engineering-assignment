@@ -14,6 +14,7 @@ class ModelManager
 {
 
 public:
+	ModelManager();
 	ModelManager(Model& m);
 	virtual ~ModelManager();
 	Model *m_Model;

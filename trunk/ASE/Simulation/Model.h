@@ -46,21 +46,23 @@ public:
 	void setProductManufacturingCost(std::vector<double> costs);
 	void setProductManufacturingTime(std::vector<int> cycles);
 	void setQueueOrdersThreshold(int threshold);
+	int getNumberOfProducers();
+	int getNumberOfCustomers();
+	double getCashPerProducer();
+	double getCashPerConsumer();
+	double getConsumerSalary();
 
 private:
 	double cashPerCustomer;
 	double cashPerProducer;
 	double consumerCashOscilation;
-	std::vector<Consumer> consumers;
-	double customerSalary;
+	double consumerSalary;
 	double factoryConstructionCost;
 	double factoryRunningCost;
 	double idleFactoryStartUpCost;
 	int numberOfCustomers;
 	int numberOfProducers;
 	double producerCashOscilation;
-	std::vector<Producer> producers;
-	std::vector<Product> products;
 	int queueOrdersThreshold;
 
 };

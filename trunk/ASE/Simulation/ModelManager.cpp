@@ -8,6 +8,12 @@
 #include "ModelManager.h"
 
 
+ModelManager::ModelManager()
+{
+
+}
+
+
 ModelManager::ModelManager(Model& model){
 
 }
