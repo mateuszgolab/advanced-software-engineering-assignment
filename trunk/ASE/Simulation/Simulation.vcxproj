@@ -78,7 +78,6 @@
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="Offer.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Producer.cpp" />
@@ -92,7 +91,6 @@
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FactoryState.h" />
     <ClInclude Include="Model.h" />
-    <ClInclude Include="ModelManager.h" />
     <ClInclude Include="Offer.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Producer.h" />

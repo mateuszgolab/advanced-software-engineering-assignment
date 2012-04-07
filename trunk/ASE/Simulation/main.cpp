@@ -8,19 +8,30 @@ int main(int argc, char *argv[])
 {
 	Model model;
 	// set parameters
-	SimulationManager simulationManager(model);
-	simulationManager.initializeModel();
-	simulationManager.startSimulation();
+	SimulationManager manager(model);
+	manager.initializeModel();
+	manager.startSimulation();
 
 	SimulationPresenter presenter(model);
 
-	while(!simulationManager.isAnyProducerBankrupt())
-	{
-		int productType = simulationManager.chooseProductType();
-		simulationManager.informCustomers(productType);
+	int bankruptProducerID = 0;
 
-		simulationManager.transferSalaries();
+	while(true)
+	{
+		int productType = manager.chooseProductType();
+		bankruptProducerID = manager.getBankruptProducer();
+		
+		if(bankruptProducerID > 0)
+		{
+			presenter.showBankruptcy(bankruptProducerID);
+			return 0;
+		}
+		
+		manager.findOffers(productType);
+		manager.informConsumers(productType);
+		manager.transferSalaries();
 		presenter.showSimulationState();
+		manager.nextCycle();
 	}
 
 	return 0;
