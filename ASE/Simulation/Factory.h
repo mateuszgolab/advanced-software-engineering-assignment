@@ -20,17 +20,19 @@ public:
 	virtual ~Factory();
 	int getIdleTime() const;
 	FactoryState getState() const;
-	double manufacture();
-	void setProduct(Product product, int orderID);
+	void manufacture(Product & product);
+
+	static void setConstructionCost(double cost);
+	static void setRunningCost(double cost);
+	static double getConstructionCost();
+	static double getRunningCost();
 
 private:
-	double constructionCost;
-	double costPerCycle;
 	double efficiency;
 	int idleTime;
 	FactoryState state;
-	int orderID;
-	Product product;
+	static double constructionCost;
+	static double costPerCycle;
 
 };
 #endif // !defined(EA_4170E875_EBC1_4fb4_8B79_FF9085BE2E54__INCLUDED_)

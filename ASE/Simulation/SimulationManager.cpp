@@ -108,6 +108,9 @@ void SimulationManager::initializeModel()
 	consumers.reserve(model.getNumberOfCustomers());
 	for(int i = 0; i < consumers.size(); i++)
 		consumers[i] = Consumer(model.getCashPerConsumer(), model.getConsumerSalary());
+
+	Factory::setRunningCost(model.getFactoryRunningCost());
+	Factory::setConstructionCost(model.getFactoryConstructionCost());
 }
 
 void SimulationManager::transferSalaries()
@@ -154,4 +157,48 @@ int SimulationManager::getCycleNumber()
 void SimulationManager::nextCycle()
 {
 	cycle++;
+}
+
+double SimulationManager::getConsumersAverageCash()
+{
+	double cash = 0.0;
+	for(int i = 0; i < consumers.size(); i++)
+	{
+		cash += consumers[i].getCash();
+	}
+
+	return cash / consumers.size();
+}
+
+int SimulationManager::getNumberOfConsumers()
+{
+	return consumers.size();
+}
+
+int SimulationManager::getNumberOfProducers()
+{
+	return producers.size();
+}
+
+Producer SimulationManager::getProducer(int index) const
+{
+	return producers[index];
+}
+
+void SimulationManager::realizeOrders()
+{
+	for(int i = 0; i < producers.size(); i++)
+	{
+		producers[i].realizeOrders();
+	}
+}
+
+void SimulationManager::producersPayments()
+{
+	vector<Producer>::iterator it = producers.begin();
+
+	for(;it != producers.end(); it++)
+	{
+		(*it).payForFactories();
+	}
 }

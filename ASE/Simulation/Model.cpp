@@ -18,60 +18,45 @@ Model::Model() : cashPerCustomer(DEFAULT_CUSTOMER_CASH), cashPerProducer(DEFAULT
 	
 }
 
-
-
 Model::~Model(){
 
 }
-
-
-
-
 
 void Model::setCustomerCash(double cash, double var){
 
 }
 
-
 void Model::setFactoryConstructionCost(double cost){
 
 }
-
 
 void Model::setFactoryRunningCost(double cost){
 
 }
 
-
 void Model::setIdleFactoryStartUpCost(double cost){
 
 }
-
 
 void Model::setNumberOfCustomers(int numberOfCustomers){
 
 }
 
-
 void Model::setNumberOfProducers(int numberOfProducers){
 
 }
-
 
 void Model::setProducerCash(double cash, double var){
 
 }
 
-
 void Model::setProductManufacturingCost(vector<double> costs){
 
 }
 
-
 void Model::setProductManufacturingTime(vector<int> cycles){
 
 }
-
 
 void Model::setQueueOrdersThreshold(int threshold){
 
@@ -100,4 +85,14 @@ int Model::getNumberOfCustomers()
 int Model::getNumberOfProducers()
 {
 	return numberOfProducers;
+}
+
+double Model::getFactoryConstructionCost()
+{
+	return factoryConstructionCost;
+}
+
+double Model::getFactoryRunningCost()
+{
+	return factoryRunningCost;
 }

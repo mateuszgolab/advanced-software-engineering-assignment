@@ -17,13 +17,9 @@ Consumer::Consumer(double cash, double salary) : cash(cash), salary(salary) , id
 
 }
 
-
-
 Consumer::~Consumer(){
 
 }
-
-
 
 void Consumer::makeOrder(int productType)
 {
@@ -38,23 +34,19 @@ void Consumer::makeOrder(int productType)
 	}
 }
 
-
 void Consumer::payProducer(double price, int producerID){
 
 }
-
 
 void Consumer::receiveSalary()
 {
 	cash += salary;
 }
 
-
 void Consumer::setSalary(double salary)
 {
 	this->salary = salary;
 }
-
 
 double Consumer::getCash()
 {

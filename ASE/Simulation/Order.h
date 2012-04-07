@@ -22,6 +22,7 @@ public:
 	Product getProduct(int i);
 	int getID();
 	int getProducerID();
+	std::vector<Product>::iterator getProductIterator();
 
 
 private:
