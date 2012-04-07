@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 	while(true)
 	{
 		int productType = manager.chooseProductType();
+		manager.producersPayments();
 		bankruptProducerID = manager.getBankruptProducer();
 		
 		if(bankruptProducerID > 0)
@@ -29,6 +30,7 @@ int main(int argc, char *argv[])
 		
 		manager.findOffers(productType);
 		manager.informConsumers(productType);
+		manager.realizeOrders();
 		manager.transferSalaries();
 		presenter.showSimulationState();
 		manager.nextCycle();

@@ -34,6 +34,12 @@ public:
 	void informConsumers(int productType);
 	void findOffers(int productType);
 	void nextCycle();
+	double getConsumersAverageCash();
+	int getNumberOfConsumers();
+	int getNumberOfProducers();
+	Producer getProducer(int index) const;
+	void realizeOrders();
+	void producersPayments();
 
 	static std::vector<Offer> getOffers();
 	static Product createProduct(int type);

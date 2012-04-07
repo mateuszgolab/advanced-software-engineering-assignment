@@ -51,6 +51,8 @@ public:
 	double getCashPerProducer();
 	double getCashPerConsumer();
 	double getConsumerSalary();
+	double getFactoryRunningCost();
+	double getFactoryConstructionCost();
 
 private:
 	double cashPerCustomer;

@@ -8,6 +8,7 @@
 #include "Order.h"
 #include "SimulationManager.h"
 
+using namespace std;
 
 Order::Order() : consumerID(0), producerID(0), cost(0), productType(0)
 {
@@ -45,3 +46,7 @@ int Order::getProducerID()
 	return producerID;
 }
 
+vector<Product>::iterator Order::getProductIterator()
+{
+	return products.begin();
+}

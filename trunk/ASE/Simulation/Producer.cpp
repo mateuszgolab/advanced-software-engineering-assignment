@@ -13,7 +13,7 @@ using namespace std;
 int Producer::idGenerator = 0;
 int Producer::threshold = 50;
 
-Producer::Producer(double cash) : cash(cash), numberOfProducts(0)
+Producer::Producer(double cash) : cash(cash), numberOfProducts(0), numberOfCompletedOrders(0)
 {
 	id = ++idGenerator;
 }
@@ -26,17 +26,29 @@ Factory Producer::buildFactory(){
 	return Factory();
 }
 
-
 void Producer::payFactoryStartUp(){
 
 }
 
+void Producer::realizeOrders()
+{
+	vector<Order>::iterator oIt = orders.begin();
+	vector<Product>::iterator pIt = (*oIt).getProductIterator();
 
-bool Producer::realizeOrder(Order order){
-
-	return false;
+	for(int i = 0; i < factories.size(); i++)
+	{
+		switch(factories[i].getState())
+		{
+			case INIT : 
+				if(cash <= factories[i].getRunningCost())
+				factories[i].manufacture(*pIt);
+				break;
+			case IDLE : 
+				factories[i].manufacture(*pIt);
+				break;
+		}
+	}
 }
-
 
 void Producer::receiveCash(double cash)
 {
@@ -44,9 +56,6 @@ void Producer::receiveCash(double cash)
 	this->cash += cash;
 	
 }
-
-
-
 
 double Producer::getCash()
 {
@@ -72,4 +81,29 @@ bool Producer::acceptOrder(Order & order)
 	}
 
 	return false;
+}
+
+int Producer::getNumberOfCompletedOrders()
+{
+	return numberOfCompletedOrders;
+}
+
+int Producer::getNumberOfFactories()
+{
+	return factories.size();
+}
+
+int Producer::getNumberOfOrders()
+{
+	return orders.size();
+}
+
+Factory Producer::getFactory(int index)
+{
+	return factories[index];
+}
+
+void Producer::payForFactories()
+{
+	cash -= factories.size() * Factory::getRunningCost();
 }

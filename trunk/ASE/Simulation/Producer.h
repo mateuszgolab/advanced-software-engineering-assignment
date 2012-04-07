@@ -22,12 +22,17 @@ public:
 
 	Factory buildFactory();
 	void payFactoryStartUp();
-	bool realizeOrder(Order order);
+	void realizeOrders();
 	void receiveCash(double cash);
 	double getCash();
 	double getProductPrice(int productType);
 	int getID();
 	bool acceptOrder(Order & order);
+	int getNumberOfOrders();
+	int getNumberOfCompletedOrders();
+	int getNumberOfFactories();
+	Factory getFactory(int index);
+	void payForFactories();
 
 private:
 	int id;
@@ -36,6 +41,7 @@ private:
 	std::vector<Factory> factories;
 	std::vector<Order> orders;
 	int numberOfProducts;
+	int numberOfCompletedOrders;
 
 	static int idGenerator;
 	static int threshold;
