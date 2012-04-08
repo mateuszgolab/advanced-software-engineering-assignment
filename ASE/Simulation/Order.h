@@ -18,12 +18,14 @@ public:
 	Order();
 	Order(int consumerID, int producerID, double cost, int numberOfProducts, int productType);
 	virtual ~Order();
+
 	int getNumberOfProducts();
 	Product getProduct(int i);
 	int getID();
 	int getProducerID();
-	std::vector<Product>::iterator getProductIterator();
-
+	std::vector<Product>::iterator getBeginIterator();
+	std::vector<Product>::iterator getEndIterator();
+	int getProductType();
 
 private:
 	int id;	

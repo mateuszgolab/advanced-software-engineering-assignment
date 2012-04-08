@@ -11,13 +11,14 @@
 
 double Factory::constructionCost = DEFAULT_FACTORY_CONSTRUCTION_COST;
 double Factory::costPerCycle = DEFAULT_FACTORY_RUNNING_COST;
+double Factory::startUpCost = DEFAULT_IDLE_FACTORY_STARTUP_COST;
 
-Factory::Factory() : efficiency(SimulationManager::randomNumberGenerator(0.0, 2.0))
+Factory::Factory() : efficiency(SimulationManager::randomNumberGenerator(0.0, 2.0)), currentProduct(NULL)
 {
 
 }
 
-Factory::Factory(double efficiency) : efficiency(efficiency)
+Factory::Factory(double efficiency) : efficiency(efficiency), currentProduct(NULL)
 {
 
 }
@@ -32,16 +33,21 @@ int Factory::getIdleTime() const
 	return 0;
 }
 
-void Factory::manufacture(Product & product)
+double Factory::manufacture(Product* product)
 {
-	 product.produce(efficiency);
+	currentProduct = product;
+	return product->produce(efficiency);
+}
+
+double Factory::manufacture()
+{
+	return currentProduct->produce(efficiency);
 }
 
 FactoryState Factory::getState() const
 {
 	return FactoryState::IDLE;
 }
-
 
 void Factory::setConstructionCost(double cost)
 {
@@ -61,4 +67,20 @@ double Factory::getConstructionCost()
 double Factory::getRunningCost()
 {
 	return costPerCycle;
+}
+
+double Factory::getFactoryStartUpCost()
+{
+	return startUpCost;
+}
+
+void Factory::setState(FactoryState state)
+{
+	this->state = state;
+	idleTime = 0;
+}
+
+void Factory::incIdleTime()
+{
+	idleTime++;
 }

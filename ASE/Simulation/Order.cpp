@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "Order.h"
-#include "SimulationManager.h"
+
 
 using namespace std;
 
@@ -19,7 +19,7 @@ Order::Order(int cID, int pID, double c, int n, int pType) : consumerID(cID), pr
 {
 	products.reserve(n);
 	for(int i = 0; i < n; i++)
-		products[i] = SimulationManager::createProduct(pType);
+		products[i] = Product(pType);
 }
 
 Order::~Order(){
@@ -46,7 +46,17 @@ int Order::getProducerID()
 	return producerID;
 }
 
-vector<Product>::iterator Order::getProductIterator()
+vector<Product>::iterator Order::getBeginIterator()
 {
 	return products.begin();
+}
+
+vector<Product>::iterator Order::getEndIterator()
+{
+	return products.end();
+}
+
+int Order::getProductType()
+{
+	return productType;
 }

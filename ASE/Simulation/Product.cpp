@@ -6,9 +6,12 @@
 ///////////////////////////////////////////////////////////
 
 #include "Product.h"
+#include "Model.h"
 
+int Product::idGenerator = 0;
 
-Product::Product(){
+Product::Product(int type) : id(++idGenerator), cyclesToProduce(DEFAULT_PRODUCT_MANUFACTURING_LENGTH), manufactureCost(DEFAULT_PRODUCT_MANUFACTURING_COST), completnessFactor(0.0), type(type)
+{
 
 }
 
@@ -25,13 +28,25 @@ void Product::increasePrice(double percentage){
 
 }
 
-void Product::setPrice(double price){
-
+void Product::setPrice(double price)
+{
+	this->price = price;
 }
 
-void Product::produce(double process)
+double Product::produce(double process)
 {
-	levelOfCompletness += process;
-	if(levelOfCompletness > 1.0) levelOfCompletness = 1.0;
+	completnessFactor += process;
+	if(completnessFactor > 1.0) completnessFactor = 1.0;
 
+	return completnessFactor;
+}
+
+double Product::getCompletnessFactor()
+{
+	return completnessFactor;
+}
+
+int Product::getProductType()
+{
+	return type;
 }
