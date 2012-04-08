@@ -23,16 +23,18 @@ public:
 	Product getProduct(int i);
 	int getID();
 	int getProducerID();
+	int getConsumerID();
+	double getCost();
+	int getProductType();
+	bool isCompleted();
 	std::vector<Product>::iterator getBeginIterator();
 	std::vector<Product>::iterator getEndIterator();
-	int getProductType();
 
 private:
 	int id;	
 	int consumerID;
 	int producerID;
 	double cost;
-	double levelOfCompletness;
 	int productType;
 	std::vector<Product> products;
 

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
 	Model model;
 	// set parameters
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 		manager.realizeOrders();
 		manager.transferSalaries();
 		presenter.showSimulationState();
+		manager.demolishUnusedFactories();
 		manager.nextCycle();
 	}
 

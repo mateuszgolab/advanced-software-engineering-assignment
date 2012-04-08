@@ -13,12 +13,12 @@ class Product
 {
 
 public:
-	Product(int type);
+	Product(int type, double price);
 	virtual ~Product();
 
 	double getProportion();
 	void increasePrice(double percentage);
-	void setPrice(double price);
+	//void setPrice(double price);
 	double produce(double process);
 	double getCompletnessFactor();
 	int getProductType();
