@@ -91,10 +91,6 @@ void SimulationManager::findOffers(int productType)
 	sort(offers.begin(), offers.end(), offer);
 }
 
-Product SimulationManager::createProduct(int type)
-{
-	return Product();
-}
 
 void SimulationManager::initializeModel()
 {

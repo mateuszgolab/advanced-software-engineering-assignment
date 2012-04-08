@@ -42,7 +42,6 @@ public:
 	void producersPayments();
 
 	static std::vector<Offer> getOffers();
-	static Product createProduct(int type);
 	static double randomNumberGenerator(double low, double high);
 	static bool isProducerInterested(Order order);
 	static int getCycleNumber();

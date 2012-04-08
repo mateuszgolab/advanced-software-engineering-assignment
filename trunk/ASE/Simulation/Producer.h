@@ -21,7 +21,6 @@ public:
 	virtual ~Producer();
 
 	Factory buildFactory();
-	void payFactoryStartUp();
 	void realizeOrders();
 	void receiveCash(double cash);
 	double getCash();
@@ -33,6 +32,8 @@ public:
 	int getNumberOfFactories();
 	Factory getFactory(int index);
 	void payForFactories();
+	bool payForProduct(int productType);
+	bool payFactoryStartUp();
 
 private:
 	int id;

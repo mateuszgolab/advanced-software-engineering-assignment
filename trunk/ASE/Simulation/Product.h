@@ -13,20 +13,24 @@ class Product
 {
 
 public:
-	Product();
+	Product(int type);
 	virtual ~Product();
 
 	double getProportion();
 	void increasePrice(double percentage);
 	void setPrice(double price);
-	void produce(double process);
+	double produce(double process);
+	double getCompletnessFactor();
+	int getProductType();
 
 private:
 	int id;
 	int cyclesToProduce;
 	double price;
 	double manufactureCost;
-	double levelOfCompletness;
+	double completnessFactor;
+	int type;
+	static int idGenerator;
 
 };
 #endif // !defined(EA_D0AEA351_AEA0_4b1c_84C2_1C8A3FAC4AA1__INCLUDED_)
