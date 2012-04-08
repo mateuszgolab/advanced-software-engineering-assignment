@@ -12,7 +12,7 @@ using namespace std;
 
 int Consumer::idGenerator = 0;
 
-Consumer::Consumer(double cash, double salary) : cash(cash), salary(salary) , id(++idGenerator)
+Consumer::Consumer(double cash, double salary) : cash(cash), salary(salary) , id(++idGenerator), state(NOTHING_ORDERED)
 {
 
 }
@@ -30,12 +30,16 @@ void Consumer::makeOrder(int productType)
 		int n = cash / offers[i].getPrice();
 		Order order(id, offers[i].getProducerID(), n * offers[i].getPrice(), n , productType);
 		if(SimulationManager::isProducerInterested(order)) 
+		{
+			state = PRODUCT_ORDERED;
 			break;
+		}
 	}
 }
 
-void Consumer::payProducer(double price, int producerID){
-
+void Consumer::payProducer(double price)
+{
+	cash -= price;
 }
 
 void Consumer::receiveSalary()

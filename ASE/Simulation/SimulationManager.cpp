@@ -15,9 +15,10 @@ using namespace std;
 
 vector<Producer> SimulationManager::producers;
 vector<Offer> SimulationManager::offers;
+vector<Consumer> SimulationManager::consumers;
 int SimulationManager::cycle = 1;
 
-SimulationManager::SimulationManager(Model& model)
+SimulationManager::SimulationManager(Model& model) : model(model)
 {
 	srand(time(NULL));
 
@@ -37,12 +38,20 @@ void SimulationManager::checkFactoriesIdleTime(){
 
 }
 
-void SimulationManager::demolishFactory(int factoryID){
-
+void SimulationManager::demolishUnusedFactories()
+{
+	for(vector<Producer>::iterator it = producers.begin(); it != producers.end(); it++)
+	{
+		it->demolishUnusedFactories();
+	}
 }
 
-void SimulationManager::increasePrices(double val){
-
+void SimulationManager::increasePrices()
+{
+	for(vector<Producer>::iterator it = producers.begin(); it != producers.end(); it++)
+	{
+		it->increasePrices(randomNumberGenerator(0.0, 5.0));
+	}
 }
 
 int SimulationManager::getBankruptProducer()
@@ -85,19 +94,19 @@ void SimulationManager::findOffers(int productType)
 
 	for(int i = 0; i < producers.size(); i++)
 	{
-		offers[i] = Offer(producers[i].getID(), producers[i].getProductPrice(productType));
+		offers.push_back(Offer(producers[i].getID(), producers[i].getProductPrice(productType)));
 	}
 
 	sort(offers.begin(), offers.end(), offer);
 }
 
-
 void SimulationManager::initializeModel()
 {
 	producers.reserve(model.getNumberOfProducers());
-	for(int i = 0; i < producers.size(); i++)
+
+	for(int i = 0; i < model.getNumberOfProducers(); i++)
 	{
-		producers[i] = Producer(model.getCashPerProducer());
+		producers.push_back(Producer(model.getCashPerProducer()));
 		producers[i].buildFactory();
 	}
 
@@ -119,7 +128,7 @@ void SimulationManager::informConsumers(int productType)
 {
 	for(int i = 0; i < consumers.size(); i++)
 	{
-		if(consumers[i].getState() == NOT_ORDERED)
+		if(consumers[i].getState() == NOTHING_ORDERED)
 		{
 			consumers[i].makeOrder(productType);	
 		}
@@ -152,6 +161,8 @@ int SimulationManager::getCycleNumber()
 
 void SimulationManager::nextCycle()
 {
+	if(!(cycle % 10))
+		increasePrices();
 	cycle++;
 }
 
@@ -186,6 +197,7 @@ void SimulationManager::realizeOrders()
 	for(int i = 0; i < producers.size(); i++)
 	{
 		producers[i].realizeOrders();
+		producers[i].finalizeOrders();
 	}
 }
 
@@ -197,4 +209,10 @@ void SimulationManager::producersPayments()
 	{
 		(*it).payForFactories();
 	}
+}
+
+void SimulationManager::transaction(int producerID, int consumerID, double cash)
+{
+	consumers[consumerID - 1].payProducer(cash);
+	producers[producerID - 1].receiveCash(cash);
 }

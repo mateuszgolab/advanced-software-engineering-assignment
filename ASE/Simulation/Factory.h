@@ -18,6 +18,7 @@ public:
 	Factory();
 	Factory(double efficiency);
 	virtual ~Factory();
+	
 	int getIdleTime() const;
 	FactoryState getState() const;
 	double manufacture(Product* product);

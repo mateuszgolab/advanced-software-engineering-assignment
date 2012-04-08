@@ -44,6 +44,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
+    <SourcePath>E:\VSSolutions\ASE\Simulation;$(SourcePath)</SourcePath>
+    <LibraryPath>E:\VSSolutions\ASE\Simulation\Debug;$(LibraryPath)</LibraryPath>
+    <ReferencePath>E:\VSSolutions\ASE\Simulation\Debug;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -64,6 +67,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>E:\VSSolutions\HPC\Serial\Debug;E:\gtest-1.6.0\msvc\gtest\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gtestd.lib;gtest_maind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,24 +89,22 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>E:\gtest-1.6.0\msvc\gtest\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gtest.lib;gtest_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Simulation\Consumer.cpp" />
     <ClCompile Include="..\Simulation\Factory.cpp" />
     <ClCompile Include="..\Simulation\Model.cpp" />
-    <ClCompile Include="..\Simulation\ModelManager.cpp" />
+    <ClCompile Include="..\Simulation\Offer.cpp" />
     <ClCompile Include="..\Simulation\Order.cpp" />
     <ClCompile Include="..\Simulation\Producer.cpp" />
     <ClCompile Include="..\Simulation\Product.cpp" />
     <ClCompile Include="..\Simulation\SimulationManager.cpp" />
-    <ClCompile Include="ConsumerTest.cc" />
-    <ClCompile Include="FactoryTest.cc" />
+    <ClCompile Include="..\Simulation\SimulationPresenter.cpp" />
+    <ClCompile Include="ConsumerTest.cpp" />
     <ClCompile Include="SimulationManagerTest.cpp" />
-    <ClCompile Include="ProducerTest.cc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mpiMock.h" />
+    <ClCompile Include="ProducerTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

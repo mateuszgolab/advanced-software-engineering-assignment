@@ -21,8 +21,8 @@ public:
 	virtual ~SimulationManager();
 
 	void checkFactoriesIdleTime();
-	void demolishFactory(int factoryID);
-	void increasePrices(double val);
+	void demolishUnusedFactories();
+	void increasePrices();
 	int getBankruptProducer();
 	void performNextCycle();
 	void saveResults(std::string fileName);
@@ -44,16 +44,16 @@ public:
 	static std::vector<Offer> getOffers();
 	static double randomNumberGenerator(double low, double high);
 	static bool isProducerInterested(Order order);
+	static void transaction(int producerID, int consumerID, double cash);
 	static int getCycleNumber();
 
 private:
 	Model model;
-	std::vector<Consumer> consumers;
 	int currentProductType;
 	static int cycle;
 	static std::vector<Offer> offers;
 	static std::vector<Producer> producers;
-
+	static std::vector<Consumer> consumers;
 
 };
 #endif // !defined(EA_C8DA3665_B677_453f_B292_9AA5F37D2A53__INCLUDED_)

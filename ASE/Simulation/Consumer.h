@@ -18,8 +18,8 @@ public:
 	Consumer(double cash, double salary);
 	virtual ~Consumer();
 
-	void makeOrder(int productID);
-	void payProducer(double price, int producerID);
+	void makeOrder(int productType);
+	void payProducer(double price);
 	void receiveSalary();
 	void setSalary(double salary);
 	double getCash();
@@ -31,7 +31,6 @@ private:
 	double salary;
 	double id;
 	ConsumerState state;
-	
 	static int idGenerator;
 
 };

@@ -15,27 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mpiMock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ProducerTest.cc">
+    <ClCompile Include="SimulationManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Simulation\Factory.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Simulation\ModelManager.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Simulation\Model.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Simulation\SimulationManager.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Simulation\Consumer.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Simulation\Producer.cpp">
@@ -44,16 +27,28 @@
     <ClCompile Include="..\Simulation\Order.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Simulation\Consumer.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulation\Factory.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\Simulation\Product.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConsumerTest.cc">
+    <ClCompile Include="..\Simulation\Model.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulation\SimulationPresenter.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Simulation\Offer.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsumerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FactoryTest.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimulationManagerTest.cpp">
+    <ClCompile Include="ProducerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

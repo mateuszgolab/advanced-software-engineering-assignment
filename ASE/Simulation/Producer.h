@@ -20,7 +20,8 @@ public:
 	Producer(double cash);
 	virtual ~Producer();
 
-	Factory buildFactory();
+	bool buildFactory();
+	void demolishUnusedFactories();
 	void realizeOrders();
 	void receiveCash(double cash);
 	double getCash();
@@ -30,10 +31,12 @@ public:
 	int getNumberOfOrders();
 	int getNumberOfCompletedOrders();
 	int getNumberOfFactories();
-	Factory getFactory(int index);
+	Factory& getFactory(int index);
 	void payForFactories();
 	bool payForProduct(int productType);
 	bool payFactoryStartUp();
+	void finalizeOrders();
+	void increasePrices(double percentage);
 
 private:
 	int id;
@@ -43,6 +46,9 @@ private:
 	std::vector<Order> orders;
 	int numberOfProducts;
 	int numberOfCompletedOrders;
+	std::vector<Order>::iterator ordersIterator;
+	std::vector<Product>::iterator productIterator;
+	bool iteratorsInitialized;
 
 	static int idGenerator;
 	static int threshold;

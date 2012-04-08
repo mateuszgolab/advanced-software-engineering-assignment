@@ -14,87 +14,109 @@ using namespace std;
 int Producer::idGenerator = 0;
 int Producer::threshold = 50;
 
-Producer::Producer(double cash) : cash(cash), numberOfProducts(0), numberOfCompletedOrders(0), id(++idGenerator)
+Producer::Producer(double cash) : cash(cash), numberOfProducts(0), numberOfCompletedOrders(0), id(++idGenerator), iteratorsInitialized(false)
 {
 	for(int i = 0; i < 5; i++)
-		productsPrices[i] = DEFAULT_PRODUCT_MANUFACTURING_COST + SimulationManager::randomNumberGenerator(0.0, DEFAULT_PRODUCT_MANUFACTURING_COST);
+		productsPrices[i] = DEFAULT_PRODUCT_MANUFACTURING_COST + SimulationManager::randomNumberGenerator(1.0, DEFAULT_PRODUCT_MANUFACTURING_COST);
+
+	factories.push_back(Factory());
+	
 }
 
 Producer::~Producer(){
 
 }
 
-Factory Producer::buildFactory(){
-	return Factory();
+bool Producer::buildFactory(){
+	if(cash > Factory::getConstructionCost())
+	{
+		cash -= Factory::getConstructionCost();
+		factories.push_back(Factory());
+		return true;
+	}
+	return false;
 }
-
 
 void Producer::realizeOrders()
 {
-	vector<Order>::iterator oIt = orders.begin();
-	vector<Product>::iterator pIt = (*oIt).getBeginIterator();
-
 	for(int i = 0; i < factories.size(); i++)
 	{
-		switch(factories[i].getState())
+		if(ordersIterator != orders.end())
 		{
-		case READY : 
-			if((*pIt).getCompletnessFactor() == 0.0)
-				if(!payForProduct((*pIt).getProductType())) return;
-
-			if(factories[i].manufacture(&(*pIt)) < 1.0)
-				factories[i].setState(RUNNING);
-
-			pIt++;
-			break;
-
-		case RUNNING :
-			if(factories[i].manufacture(&(*pIt)) == 1.0)
-				factories[i].setState(READY);
-
-			break;
-
-		case IDLE : 
-			if((*pIt).getCompletnessFactor() == 0.0)
+			switch(factories[i].getState())
 			{
+			case READY : 
+				if(!payForProduct((*productIterator).getProductType())) return;
+
+				if(factories[i].manufacture(&(*productIterator)) < 1.0)
+					factories[i].setState(RUNNING);
+
+				productIterator++;
+				break;
+
+			case RUNNING :
+				if(factories[i].manufacture() == 1.0)
+					factories[i].setState(READY);
+				break;
+
+			case IDLE : 
 				if(!payFactoryStartUp()) return;
-				if(!payForProduct((*pIt).getProductType())) return;
+				if(!payForProduct((*productIterator).getProductType())) return;
+				factories[i].manufacture(&(*productIterator));
+				productIterator++;
+				break;
 			}
 
-			factories[i].manufacture(&(*pIt));
-			pIt++;
-			break;
-		}
-
-		if(pIt == (*oIt).getEndIterator())
-		{
-			oIt++;
-			if(oIt == orders.end())
+			if(productIterator == (*ordersIterator).getEndIterator())
 			{
-				i++;
-				for(; i < factories.size(); i++)
-				{
-					switch(factories[i].getState())
-					{
-					case READY : 
-						factories[i].setState(IDLE);
-						factories[i].incIdleTime();
-						break;
-
-					case RUNNING :
-						if(factories[i].manufacture(&(*pIt)) == 1.0)
-							factories[i].setState(READY);
-						break;
-
-					case IDLE : 
-							factories[i].incIdleTime();
-						break;
-					}
-				}
-
-				return;
+				ordersIterator++;
+				if(ordersIterator != orders.end())
+					productIterator = (*ordersIterator).getBeginIterator();
 			}
-			pIt = (*oIt).getBeginIterator();
+		}
+		else
+		{
+			switch(factories[i].getState())
+			{
+			case READY : 
+					factories[i].setState(IDLE);
+					factories[i].incIdleTime();
+				break;
+
+			case RUNNING :
+				if(factories[i].manufacture() == 1.0)
+					factories[i].setState(READY);
+				break;
+
+			case IDLE : 
+				factories[i].incIdleTime();
+				break;
+			}
+		}
+	}
+
+	while(ordersIterator != orders.end())
+	{
+		if(!buildFactory()) return;
+
+		if(productIterator == (*ordersIterator).getEndIterator())
+		{
+			ordersIterator++;
+			if(ordersIterator != orders.end())
+				productIterator = (*ordersIterator).getBeginIterator();
+		}
+	}
+}
+
+void Producer::finalizeOrders()
+{
+	for(vector<Order>::iterator it = orders.begin(); it != orders.end(); it++)
+	{
+		if((*it).isCompleted())
+		{
+			SimulationManager::transaction((*it).getProducerID(), (*it).getConsumerID(), (*it).getCost());
+			orders.erase(it);
+			numberOfCompletedOrders++;
 		}
 	}
 }
@@ -126,6 +148,12 @@ bool Producer::acceptOrder(Order & order)
 	if(numberOfProducts + order.getNumberOfProducts() < threshold) 
 	{
 		orders.push_back(order);
+		if(!iteratorsInitialized)
+		{
+			ordersIterator = orders.begin();
+			productIterator = ordersIterator->getBeginIterator();
+			iteratorsInitialized = true;
+		}
 		return true;
 	}
 
@@ -147,7 +175,7 @@ int Producer::getNumberOfOrders()
 	return orders.size();
 }
 
-Factory Producer::getFactory(int index)
+Factory& Producer::getFactory(int index)
 {
 	return factories[index];
 }
@@ -183,4 +211,25 @@ bool Producer::payFactoryStartUp()
 	}
 
 	return true;
+}
+
+void Producer::demolishUnusedFactories()
+{
+	vector<Factory>::iterator it = factories.begin();
+	while(it != factories.end())
+	{
+		if((*it).getIdleTime() > 50)
+		{
+			it = factories.erase(it);
+		}
+		else it++;
+	}
+}
+
+void Producer::increasePrices(double percentage)
+{
+	for(int i = 0; i < 5; i++)
+	{
+		productsPrices[i] *= (1.0 + percentage/100);
+	}
 }
