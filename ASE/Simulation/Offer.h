@@ -15,10 +15,9 @@ public:
 	Offer();
 	Offer(int producerID, double price);
 	virtual ~Offer();
+	
 	int getProducerID();
-	void setProducerID(int id);
 	double getPrice() const;
-	void setPrice(double price);
 	bool operator()(const Offer & o1, const Offer & o2);
 
 private:

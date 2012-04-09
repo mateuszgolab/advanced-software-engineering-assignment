@@ -7,6 +7,7 @@
 
 #include "SimulationPresenter.h"
 #include <iostream>
+#include <fstream>
 #include "SimulationManager.h"
 
 
@@ -21,27 +22,35 @@ SimulationPresenter::~SimulationPresenter(){
 
 }
 
-void SimulationPresenter::showSimulationState()
+void SimulationPresenter::showSimulationState(ostream & os)
 {
-	cout<<"Cycle : "<<SimulationManager::getCycleNumber()<<endl;
+	os<<"Cycle : "<<SimulationManager::getCycleNumber()<<endl;
 	int n = manager.getNumberOfProducers();
 
 	for(int i = 0; i < n; i++)
 	{
 		Producer producer = manager.getProducer(i);
-		cout<<"Producer id : "<<producer.getID()<<endl;
-		cout<<"Number of orders : "<<producer.getNumberOfOrders()<<endl;
-		cout<<"Number of orders completed : "<<producer.getNumberOfCompletedOrders()<<endl;
-		cout<<"Number of factories : "<<producer.getNumberOfFactories()<<endl;
-		cout<<"Cash reserves : "<<producer.getCash()<<endl<<endl;
+		os<<"Producer id : "<<producer.getID()<<endl;
+		os<<"Number of orders : "<<producer.getNumberOfOrders()<<endl;
+		os<<"Number of orders completed : "<<producer.getNumberOfCompletedOrders()<<endl;
+		os<<"Number of factories : "<<producer.getNumberOfFactories()<<endl;
+		os<<"Cash reserves : "<<producer.getCash()<<endl<<endl;
 	}
 
-	cout<<"Average cash reserves for all the consumers : "<<manager.getConsumersAverageCash()<<endl<<endl;
+	os<<"Average cash reserves for all the consumers : "<<manager.getConsumersAverageCash()<<endl<<endl;
 
 }
 
-void SimulationPresenter::showBankruptcy(int producerID)
+void SimulationPresenter::showBankruptcy(ostream & os, int producerID)
 {
-	cout<<"Producer "<<producerID<<" is bankrupt"<<endl;
-	cout<<"Simulation ended"<<endl;
+	os<<"Producer "<<producerID<<" is bankrupt"<<endl;
+	os<<"Simulation ended"<<endl;
+}
+
+void SimulationPresenter::saveResults(string fileName)
+{
+	ofstream myfile;
+	myfile.open(fileName);
+	showSimulationState(myfile);
+	myfile.close();
 }

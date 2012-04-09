@@ -38,12 +38,3 @@ double Offer::getPrice() const
 	return price;
 }
 
-void Offer::setPrice(double price)
-{
-	this->price = price;
-}
-
-void Offer::setProducerID(int id)
-{
-	this->producerID = id;
-}
