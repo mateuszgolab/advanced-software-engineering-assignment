@@ -62,3 +62,7 @@ ConsumerState Consumer::getState()
 	return state;
 }
 
+int Consumer::getID()
+{
+	return id;
+}

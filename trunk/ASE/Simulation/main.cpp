@@ -11,7 +11,7 @@ int main()
 	SimulationManager manager(model);
 	manager.initializeModel();
 
-	SimulationPresenter presenter(model);
+	SimulationPresenter presenter(manager);
 
 	int bankruptProducerID = 0;
 
@@ -34,6 +34,8 @@ int main()
 		presenter.showSimulationState(std::cout);
 		manager.demolishUnusedFactories();
 		manager.nextCycle();
+
+	
 	}
 
 	return 0;

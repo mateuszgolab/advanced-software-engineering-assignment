@@ -8,7 +8,7 @@ protected :
 	Producer p;
 	SimulationManager sm;
 
-	ProducerTest() : p(10000), sm()
+	ProducerTest() : p(DEFAULT_PRODUCER_CASH), sm()
 	{
 		sm.initializeModel();
 		sm.findOffers(1);
@@ -26,7 +26,7 @@ TEST_F(ProducerTest, buildFactoryTest)
 TEST_F(ProducerTest, payFactoryStartUpTest)
 {
 	p.payFactoryStartUp();
-	EXPECT_EQ(9985, p.getCash());
+	EXPECT_EQ(19985, p.getCash());
 }
 
 TEST_F(ProducerTest, realizeOrderTest1)
@@ -79,7 +79,7 @@ TEST_F(ProducerTest, realizeOrderTest3)
 TEST_F(ProducerTest, receiveCashTest)
 {
 	p.receiveCash(1000);
-	EXPECT_EQ(11000, p.getCash());
+	EXPECT_EQ(21000, p.getCash());
 }
 
 TEST_F(ProducerTest, demolishUnusedFactoriesTest)
@@ -93,21 +93,21 @@ TEST_F(ProducerTest, demolishUnusedFactoriesTest)
 
 TEST_F(ProducerTest, getProductPriceTest)
 {
-	EXPECT_GE(p.getProductPrice(1), 6.0);
-	EXPECT_LE(p.getProductPrice(1), 10.0);
+	EXPECT_GE(p.getProductPrice(1), 2 * DEFAULT_PRODUCT_MANUFACTURING_COST);
+	EXPECT_LE(p.getProductPrice(1), 10 * DEFAULT_PRODUCT_MANUFACTURING_COST);
 }
 
 TEST_F(ProducerTest, payForFactoriesTest)
 {
 	p.payForFactories();
-	EXPECT_EQ(9950, p.getCash());
+	EXPECT_EQ(19950, p.getCash());
 }
 
 TEST_F(ProducerTest, payForProductTest)
 {
 	p.payForProduct(1);
-	EXPECT_GE(p.getCash(), 9990);
-	EXPECT_LE(p.getCash(), 9995);
+	EXPECT_GE(p.getCash(), DEFAULT_PRODUCER_CASH - 10 * DEFAULT_PRODUCT_MANUFACTURING_COST);
+	EXPECT_LE(p.getCash(), DEFAULT_PRODUCER_CASH - 2 * DEFAULT_PRODUCT_MANUFACTURING_COST);
 }
 
 TEST_F(ProducerTest, finalizeOrdersTest)
@@ -132,8 +132,8 @@ TEST_F(ProducerTest, increasePricesTest)
 {
 	p.increasePrices(100.0);
 
-	EXPECT_GE(p.getProductPrice(1), 12.0);
-	EXPECT_LE(p.getProductPrice(1), 20.0);
+	EXPECT_GE(p.getProductPrice(1), 4 * DEFAULT_PRODUCT_MANUFACTURING_COST);
+	EXPECT_LE(p.getProductPrice(1), 20 * DEFAULT_PRODUCT_MANUFACTURING_COST);
 }
 
 TEST_F(ProducerTest, acceptOrderTest)

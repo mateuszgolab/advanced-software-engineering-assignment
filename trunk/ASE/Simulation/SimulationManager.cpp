@@ -168,9 +168,16 @@ int SimulationManager::getNumberOfProducers()
 
 Producer& SimulationManager::getProducer(int id)
 {
-	int index = id - 1 - producers[0].getID();
+	int index = id - producers[0].getID();
 	if(index < 0) index = 0;
 	return producers[index];
+}
+
+Consumer& SimulationManager::getConsumer(int id)
+{
+	int index = id - consumers[0].getID();
+	if(index < 0) index = 0;
+	return consumers[index];
 }
 
 void SimulationManager::realizeOrders()
@@ -188,12 +195,13 @@ void SimulationManager::producersPayments()
 
 	for(;it != producers.end(); it++)
 	{
-		(*it).payForFactories();
+		it->payForFactories();
 	}
 }
 
 void SimulationManager::transaction(int producerID, int consumerID, double cash)
 {
-	consumers[consumerID - 1].payProducer(cash);
-	producers[producerID - 1].receiveCash(cash);
+	getConsumer(consumerID).payProducer(cash);
+	getProducer(producerID).receiveCash(cash);
 }
+
