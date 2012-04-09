@@ -29,24 +29,51 @@ TEST_F(ProducerTest, payFactoryStartUpTest)
 	EXPECT_EQ(9985, p.getCash());
 }
 
-TEST_F(ProducerTest, realizeOrderTest)
+TEST_F(ProducerTest, realizeOrderTest1)
 {
 	p.buildFactory();
 	p.getFactory(1).setState(IDLE);
 
 	p.acceptOrder(Order(1,1, 100, 1, 1));
 	p.acceptOrder(Order(1,1, 100, 1, 1));
-	for(int i = 0; i < 5; i++) p.realizeOrders();
+	for(int i = 0; i < 10; i++) p.realizeOrders();
 
-	EXPECT_EQ(READY, p.getFactory(0).getState());
-	EXPECT_EQ(READY, p.getFactory(1).getState());
+	EXPECT_EQ(IDLE, p.getFactory(0).getState());
+	EXPECT_EQ(IDLE, p.getFactory(1).getState());
+	EXPECT_EQ(2, p.getNumberOfOrders());
 }
 
 TEST_F(ProducerTest, realizeOrderTest2)
 {
-	//Order order(1, 1, 100, 10000, 1);
-	//Producer p;
-	//EXPECT_FALSE(p.realizeOrder(order));
+	p.buildFactory();
+	p.getFactory(1).setState(IDLE);
+
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	p.realizeOrders();
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+
+	EXPECT_EQ(RUNNING, p.getFactory(0).getState());
+	EXPECT_EQ(RUNNING, p.getFactory(1).getState());
+	EXPECT_EQ(3, p.getNumberOfOrders());
+}
+
+TEST_F(ProducerTest, realizeOrderTest3)
+{
+	p.buildFactory();
+	p.getFactory(1).setState(IDLE);
+
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	p.realizeOrders();
+
+
+	EXPECT_EQ(RUNNING, p.getFactory(0).getState());
+	EXPECT_EQ(RUNNING, p.getFactory(1).getState());
+	EXPECT_EQ(RUNNING, p.getFactory(2).getState());
+	EXPECT_EQ(3, p.getNumberOfOrders());
+
 }
 
 TEST_F(ProducerTest, receiveCashTest)
@@ -89,6 +116,18 @@ TEST_F(ProducerTest, finalizeOrdersTest)
 	EXPECT_EQ(0, p.getNumberOfCompletedOrders());
 }
 
+TEST_F(ProducerTest, finalizeOrdersTest2)
+{
+	p.buildFactory();
+	p.getFactory(1).setState(IDLE);
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	p.acceptOrder(Order(1,1, 100, 1, 1));
+	for(int i = 0; i < 10; i++) p.realizeOrders();
+	p.finalizeOrders();
+	EXPECT_EQ(2, p.getNumberOfCompletedOrders());
+	EXPECT_EQ(0, p.getNumberOfOrders());
+}
+
 TEST_F(ProducerTest, increasePricesTest)
 {
 	p.increasePrices(100.0);
@@ -97,13 +136,18 @@ TEST_F(ProducerTest, increasePricesTest)
 	EXPECT_LE(p.getProductPrice(1), 20.0);
 }
 
+TEST_F(ProducerTest, acceptOrderTest)
+{
+	p.acceptOrder(Order(1,1, 100, 50, 1));
+	EXPECT_FALSE(p.acceptOrder(Order(1,1, 100, 1, 1)));
+	EXPECT_EQ(1, p.getNumberOfOrders());
+}
 
 
 
 
 	
 
-	//int getNumberOfOrders();
 
 
 

@@ -37,6 +37,7 @@ public:
 	bool payFactoryStartUp();
 	void finalizeOrders();
 	void increasePrices(double percentage);
+	Product & getProduct();
 
 private:
 	int id;
@@ -46,9 +47,8 @@ private:
 	std::vector<Order> orders;
 	int numberOfProducts;
 	int numberOfCompletedOrders;
-	std::vector<Order>::iterator ordersIterator;
-	std::vector<Product>::iterator productIterator;
-	bool iteratorsInitialized;
+	int ordersIterator;
+	int productIterator;
 
 	static int idGenerator;
 	static int threshold;

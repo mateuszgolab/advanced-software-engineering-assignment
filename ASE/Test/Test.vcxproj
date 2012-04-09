@@ -103,6 +103,7 @@
     <ClCompile Include="..\Simulation\SimulationManager.cpp" />
     <ClCompile Include="..\Simulation\SimulationPresenter.cpp" />
     <ClCompile Include="ConsumerTest.cpp" />
+    <ClCompile Include="FactoryTest.cpp" />
     <ClCompile Include="SimulationManagerTest.cpp" />
     <ClCompile Include="ProducerTest.cpp" />
   </ItemGroup>
