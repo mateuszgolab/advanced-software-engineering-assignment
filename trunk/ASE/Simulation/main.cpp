@@ -10,7 +10,6 @@ int main()
 	// set parameters
 	SimulationManager manager(model);
 	manager.initializeModel();
-	manager.startSimulation();
 
 	SimulationPresenter presenter(model);
 
@@ -24,7 +23,7 @@ int main()
 		
 		if(bankruptProducerID > 0)
 		{
-			presenter.showBankruptcy(bankruptProducerID);
+			presenter.showBankruptcy(std::cout, bankruptProducerID);
 			return 0;
 		}
 		
@@ -32,7 +31,7 @@ int main()
 		manager.informConsumers(productType);
 		manager.realizeOrders();
 		manager.transferSalaries();
-		presenter.showSimulationState();
+		presenter.showSimulationState(std::cout);
 		manager.demolishUnusedFactories();
 		manager.nextCycle();
 	}

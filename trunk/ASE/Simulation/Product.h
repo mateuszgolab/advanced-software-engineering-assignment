@@ -16,12 +16,11 @@ public:
 	Product(int type, double price);
 	virtual ~Product();
 
-	double getProportion();
 	void increasePrice(double percentage);
-	//void setPrice(double price);
 	double produce(double process);
 	double getCompletnessFactor();
 	int getProductType();
+	double getPrice() const;
 
 private:
 	int id;

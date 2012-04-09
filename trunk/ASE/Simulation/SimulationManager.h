@@ -20,14 +20,9 @@ public:
 	SimulationManager();
 	virtual ~SimulationManager();
 
-	void checkFactoriesIdleTime();
 	void demolishUnusedFactories();
 	void increasePrices();
 	int getBankruptProducer();
-	void performNextCycle();
-	void saveResults(std::string fileName);
-	void showResults();
-	void startSimulation();
 	void initializeModel();
 	void transferSalaries();
 	int chooseProductType();
@@ -37,10 +32,10 @@ public:
 	double getConsumersAverageCash();
 	int getNumberOfConsumers();
 	int getNumberOfProducers();
-	Producer getProducer(int index) const;
 	void realizeOrders();
 	void producersPayments();
 
+	static Producer& getProducer(int id);
 	static std::vector<Offer> getOffers();
 	static double randomNumberGenerator(double low, double high);
 	static bool isProducerInterested(Order order);

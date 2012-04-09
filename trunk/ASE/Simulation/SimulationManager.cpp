@@ -18,24 +18,22 @@ vector<Offer> SimulationManager::offers;
 vector<Consumer> SimulationManager::consumers;
 int SimulationManager::cycle = 1;
 
-SimulationManager::SimulationManager(Model& model) : model(model)
+SimulationManager::SimulationManager(Model& model) : model(model), currentProductType(0)
 {
 	srand(time(NULL));
-
 }
 
-SimulationManager::SimulationManager()
+SimulationManager::SimulationManager() : currentProductType(0)
 {
 	srand(time(NULL));
 }
 
 SimulationManager::~SimulationManager()
 {
-
-}
-
-void SimulationManager::checkFactoriesIdleTime(){
-
+	producers.clear();
+	consumers.clear();
+	offers.clear();
+	cycle = 1;
 }
 
 void SimulationManager::demolishUnusedFactories()
@@ -50,7 +48,7 @@ void SimulationManager::increasePrices()
 {
 	for(vector<Producer>::iterator it = producers.begin(); it != producers.end(); it++)
 	{
-		it->increasePrices(randomNumberGenerator(0.0, 5.0));
+		it->increasePrices(randomNumberGenerator(1.0, 5.0));
 	}
 }
 
@@ -63,22 +61,6 @@ int SimulationManager::getBankruptProducer()
 	}
 
 	return -1;
-
-}
-
-void SimulationManager::performNextCycle(){
-
-}
-
-void SimulationManager::saveResults(string fileName){
-
-}
-
-void SimulationManager::showResults(){
-
-}
-
-void SimulationManager::startSimulation(){
 
 }
 
@@ -106,11 +88,10 @@ void SimulationManager::initializeModel()
 	for(int i = 0; i < model.getNumberOfProducers(); i++)
 	{
 		producers.push_back(Producer(model.getCashPerProducer()));
-		producers[i].buildFactory();
 	}
 
-	consumers.reserve(model.getNumberOfCustomers());
-	for(int i = 0; i < model.getNumberOfCustomers(); i++)
+	consumers.reserve(model.getNumberOfConsumers());
+	for(int i = 0; i < model.getNumberOfConsumers(); i++)
 		consumers.push_back(Consumer(model.getCashPerConsumer(), model.getConsumerSalary()));
 
 	Factory::setRunningCost(model.getFactoryRunningCost());
@@ -149,8 +130,7 @@ double SimulationManager::randomNumberGenerator(double low, double high)
 
 bool SimulationManager::isProducerInterested(Order order)
 {
-	int index = order.getID() - 1;
-	return producers[index].acceptOrder(order);
+	return getProducer(order.getProducerID()).acceptOrder(order);
 }
 
 int SimulationManager::getCycleNumber()
@@ -186,8 +166,10 @@ int SimulationManager::getNumberOfProducers()
 	return producers.size();
 }
 
-Producer SimulationManager::getProducer(int index) const
+Producer& SimulationManager::getProducer(int id)
 {
+	int index = id - 1 - producers[0].getID();
+	if(index < 0) index = 0;
 	return producers[index];
 }
 

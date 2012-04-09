@@ -19,19 +19,10 @@ Product::~Product(){
 
 }
 
-double Product::getProportion(){
-
-	return 0;
+void Product::increasePrice(double percentage)
+{
+	price *= (1.0 + percentage/100.0);
 }
-
-void Product::increasePrice(double percentage){
-
-}
-
-//void Product::setPrice(double price)
-//{
-//	this->price = price;
-//}
 
 double Product::produce(double process)
 {
@@ -51,3 +42,9 @@ int Product::getProductType()
 {
 	return type;
 }
+
+double Product::getPrice() const
+{
+	return price;
+}
+

@@ -27,8 +27,6 @@ public:
 	double getCost();
 	int getProductType();
 	bool isCompleted();
-	std::vector<Product>::iterator getBeginIterator();
-	std::vector<Product>::iterator getEndIterator();
 
 private:
 	int id;	

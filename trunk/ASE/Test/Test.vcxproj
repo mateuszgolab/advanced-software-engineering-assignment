@@ -104,8 +104,13 @@
     <ClCompile Include="..\Simulation\SimulationPresenter.cpp" />
     <ClCompile Include="ConsumerTest.cpp" />
     <ClCompile Include="FactoryTest.cpp" />
+    <ClCompile Include="ModelTest.cpp" />
+    <ClCompile Include="OfferTest.cpp" />
+    <ClCompile Include="OrderTest.cpp" />
+    <ClCompile Include="ProductTest.cpp" />
     <ClCompile Include="SimulationManagerTest.cpp" />
     <ClCompile Include="ProducerTest.cpp" />
+    <ClCompile Include="SimulationPresenterTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

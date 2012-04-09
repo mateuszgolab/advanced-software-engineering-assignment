@@ -26,7 +26,8 @@ Producer::~Producer(){
 
 }
 
-bool Producer::buildFactory(){
+bool Producer::buildFactory()
+{
 	if(cash > Factory::getConstructionCost())
 	{
 		cash -= Factory::getConstructionCost();
@@ -109,7 +110,7 @@ void Producer::realizeOrders()
 		productIterator++;
 		i++;
 
-		if(productIterator == orders[productIterator].getNumberOfProducts())
+		if(productIterator == orders[ordersIterator].getNumberOfProducts())
 		{
 			ordersIterator++;
 			if(ordersIterator < orders.size())

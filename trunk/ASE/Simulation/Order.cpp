@@ -48,16 +48,6 @@ int Order::getProducerID()
 	return producerID;
 }
 
-vector<Product>::iterator Order::getBeginIterator()
-{
-	return products.begin();
-}
-
-vector<Product>::iterator Order::getEndIterator()
-{
-	return products.end();
-}
-
 int Order::getProductType()
 {
 	return productType;
