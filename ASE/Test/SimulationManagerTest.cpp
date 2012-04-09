@@ -59,7 +59,7 @@ TEST_F(SimulationManagerTest, getBankruptProducer)
 	EXPECT_EQ(-1, m.getBankruptProducer());
 
 	m.chooseProductType();
-	for(int i = 0; i < 200; i++)
+	for(int i = 0; i < 400; i++)
 		m.producersPayments();
 
 	EXPECT_NE(-1,m.getBankruptProducer());
@@ -86,7 +86,7 @@ TEST_F(SimulationManagerTest, informCustomersTest)
 	m.informConsumers(i);
 	m.realizeOrders();
 
-	EXPECT_EQ(RUNNING, m.getProducer(id - 1).getFactory(0).getState());
+	EXPECT_EQ(RUNNING, m.getProducer(id).getFactory(0).getState());
 }
 
 TEST_F(SimulationManagerTest, isProducerInterestedTest)

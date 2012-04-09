@@ -36,6 +36,7 @@ public:
 	void producersPayments();
 
 	static Producer& getProducer(int id);
+	static Consumer& getConsumer(int id);
 	static std::vector<Offer> getOffers();
 	static double randomNumberGenerator(double low, double high);
 	static bool isProducerInterested(Order order);

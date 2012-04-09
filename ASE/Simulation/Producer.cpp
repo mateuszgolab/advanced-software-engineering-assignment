@@ -17,7 +17,7 @@ int Producer::threshold = 50;
 Producer::Producer(double cash) : cash(cash), numberOfProducts(0), numberOfCompletedOrders(0), id(++idGenerator), ordersIterator(0), productIterator(0)
 {
 	for(int i = 0; i < 5; i++)
-		productsPrices[i] = DEFAULT_PRODUCT_MANUFACTURING_COST + SimulationManager::randomNumberGenerator(1.0, DEFAULT_PRODUCT_MANUFACTURING_COST);
+		productsPrices[i] = SimulationManager::randomNumberGenerator(2*DEFAULT_PRODUCT_MANUFACTURING_COST, 10 * DEFAULT_PRODUCT_MANUFACTURING_COST);
 
 	factories.push_back(Factory());
 }
@@ -98,9 +98,12 @@ void Producer::realizeOrders()
 		}
 	}
 
-	while(ordersIterator < orders.size())
+	int factoriesBuilt = 0;
+
+	while(ordersIterator < orders.size() && factoriesBuilt < 1)
 	{
 		if(!buildFactory()) return;
+		factoriesBuilt++;
 
 		if(!payForProduct(getProduct().getProductType())) return;
 

@@ -24,6 +24,7 @@ public:
 	void setSalary(double salary);
 	double getCash();
 	ConsumerState getState();
+	int getID();
 	
 
 private:

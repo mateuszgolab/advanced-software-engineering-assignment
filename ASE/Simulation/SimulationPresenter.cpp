@@ -27,7 +27,7 @@ void SimulationPresenter::showSimulationState(ostream & os)
 	os<<"Cycle : "<<SimulationManager::getCycleNumber()<<endl;
 	int n = manager.getNumberOfProducers();
 
-	for(int i = 0; i < n; i++)
+	for(int i = 1; i <= n; i++)
 	{
 		Producer producer = manager.getProducer(i);
 		os<<"Producer id : "<<producer.getID()<<endl;
@@ -38,6 +38,7 @@ void SimulationPresenter::showSimulationState(ostream & os)
 	}
 
 	os<<"Average cash reserves for all the consumers : "<<manager.getConsumersAverageCash()<<endl<<endl;
+	os<<"----------------------------------------------------------"<<endl;
 
 }
 
