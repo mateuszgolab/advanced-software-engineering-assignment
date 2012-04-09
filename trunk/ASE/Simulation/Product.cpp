@@ -35,7 +35,8 @@ void Product::increasePrice(double percentage){
 
 double Product::produce(double process)
 {
-	completnessFactor += process;
+	double tmp = cyclesToProduce;
+	completnessFactor += process/tmp;
 	if(completnessFactor > 1.0) completnessFactor = 1.0;
 
 	return completnessFactor;

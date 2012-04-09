@@ -33,7 +33,7 @@ int Order::getNumberOfProducts()
 	return products.size();
 }
 
-Product Order::getProduct(int i)
+Product& Order::getProduct(int i)
 {
 	return products[i];
 }

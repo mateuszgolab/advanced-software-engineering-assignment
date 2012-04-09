@@ -103,7 +103,6 @@ void SimulationManager::findOffers(int productType)
 void SimulationManager::initializeModel()
 {
 	producers.reserve(model.getNumberOfProducers());
-
 	for(int i = 0; i < model.getNumberOfProducers(); i++)
 	{
 		producers.push_back(Producer(model.getCashPerProducer()));
@@ -111,8 +110,8 @@ void SimulationManager::initializeModel()
 	}
 
 	consumers.reserve(model.getNumberOfCustomers());
-	for(int i = 0; i < consumers.size(); i++)
-		consumers[i] = Consumer(model.getCashPerConsumer(), model.getConsumerSalary());
+	for(int i = 0; i < model.getNumberOfCustomers(); i++)
+		consumers.push_back(Consumer(model.getCashPerConsumer(), model.getConsumerSalary()));
 
 	Factory::setRunningCost(model.getFactoryRunningCost());
 	Factory::setConstructionCost(model.getFactoryConstructionCost());

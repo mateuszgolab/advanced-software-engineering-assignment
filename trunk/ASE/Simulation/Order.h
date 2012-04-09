@@ -20,7 +20,7 @@ public:
 	virtual ~Order();
 
 	int getNumberOfProducts();
-	Product getProduct(int i);
+	Product& getProduct(int i);
 	int getID();
 	int getProducerID();
 	int getConsumerID();
