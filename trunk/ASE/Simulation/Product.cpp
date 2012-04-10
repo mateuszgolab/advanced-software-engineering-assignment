@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Product.cpp
 //  Implementation of the Class Product
-//  Created on:      03-kwi-2012 23:55:01
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:55:01
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "Product.h"

@@ -5,10 +5,11 @@
 class ProducerTest : public ::testing::Test
 {
 protected :
-	Producer p;
+	
 	SimulationManager sm;
+	Producer p;
 
-	ProducerTest() : p(DEFAULT_PRODUCER_CASH), sm()
+	ProducerTest() : sm(), p(DEFAULT_PRODUCER_CASH, DEFAULT_QUEUE_THRESHOLD, sm.getModel().getProductCosts(), sm.getModel().getProductLengths())
 	{
 		sm.initializeModel();
 		sm.findOffers(1);
@@ -138,7 +139,7 @@ TEST_F(ProducerTest, increasePricesTest)
 
 TEST_F(ProducerTest, acceptOrderTest)
 {
-	p.acceptOrder(Order(1,1, 100, 50, 1));
+	EXPECT_TRUE(p.acceptOrder(Order(1,1, 100, 100, 1)));
 	EXPECT_FALSE(p.acceptOrder(Order(1,1, 100, 1, 1)));
 	EXPECT_EQ(1, p.getNumberOfOrders());
 }

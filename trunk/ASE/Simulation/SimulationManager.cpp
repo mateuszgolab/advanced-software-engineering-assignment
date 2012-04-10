@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  SimulationManager.cpp
 //  Implementation of the Class SimulationManager
-//  Created on:      03-kwi-2012 23:54:59
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:54:59
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "SimulationManager.h"
@@ -82,12 +82,13 @@ void SimulationManager::findOffers(int productType)
 	sort(offers.begin(), offers.end(), offer);
 }
 
-void SimulationManager::initializeModel()
+void SimulationManager::initializeModel(Model& model)
 {
+	this->model = model;
 	producers.reserve(model.getNumberOfProducers());
 	for(int i = 0; i < model.getNumberOfProducers(); i++)
 	{
-		producers.push_back(Producer(model.getCashPerProducer()));
+		producers.push_back(Producer(model.getCashPerProducer(), model.getQueueOrdersThreshold(), model.getProductCosts(), model.getProductLengths()));
 	}
 
 	consumers.reserve(model.getNumberOfConsumers());
@@ -96,6 +97,24 @@ void SimulationManager::initializeModel()
 
 	Factory::setRunningCost(model.getFactoryRunningCost());
 	Factory::setConstructionCost(model.getFactoryConstructionCost());
+	Factory::setIdleStartUpCost(model.getIdleFactoryStartupCost());
+}
+
+void SimulationManager::initializeModel()
+{
+	producers.reserve(model.getNumberOfProducers());
+	for(int i = 0; i < model.getNumberOfProducers(); i++)
+	{
+		producers.push_back(Producer(model.getCashPerProducer(), model.getQueueOrdersThreshold(), model.getProductCosts(), model.getProductLengths()));
+	}
+
+	consumers.reserve(model.getNumberOfConsumers());
+	for(int i = 0; i < model.getNumberOfConsumers(); i++)
+		consumers.push_back(Consumer(model.getCashPerConsumer(), model.getConsumerSalary()));
+
+	Factory::setRunningCost(model.getFactoryRunningCost());
+	Factory::setConstructionCost(model.getFactoryConstructionCost());
+	Factory::setIdleStartUpCost(model.getIdleFactoryStartupCost());
 }
 
 void SimulationManager::transferSalaries()
@@ -205,3 +224,7 @@ void SimulationManager::transaction(int producerID, int consumerID, double cash)
 	getProducer(producerID).receiveCash(cash);
 }
 
+Model& SimulationManager::getModel()
+{
+	return model;
+}

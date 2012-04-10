@@ -7,12 +7,12 @@ using namespace std;
 int main()
 {
 	Model model;
-	// set parameters
+
 	SimulationManager manager(model);
-	manager.initializeModel();
-
-	SimulationPresenter presenter(manager);
-
+	SimulationPresenter presenter(manager, "results.txt");
+	if(!presenter.setParameters(cout)) return 0;
+	manager.initializeModel(presenter.getModel());
+	
 	int bankruptProducerID = 0;
 
 	while(true)
@@ -24,6 +24,9 @@ int main()
 		if(bankruptProducerID > 0)
 		{
 			presenter.showBankruptcy(std::cout, bankruptProducerID);
+			cout<<"press any key to finish"<<endl;
+			getchar();
+			getchar();
 			return 0;
 		}
 		
@@ -32,11 +35,14 @@ int main()
 		manager.realizeOrders();
 		manager.transferSalaries();
 		presenter.showSimulationState(std::cout);
+		presenter.saveResults();
 		manager.demolishUnusedFactories();
 		manager.nextCycle();
 
 	
 	}
+
+	
 
 	return 0;
 }

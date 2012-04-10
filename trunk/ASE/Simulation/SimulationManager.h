@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  SimulationManager.h
 //  Implementation of the Class SimulationManager
-//  Created on:      03-kwi-2012 23:54:59
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:54:59
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #if !defined(EA_C8DA3665_B677_453f_B292_9AA5F37D2A53__INCLUDED_)
@@ -23,6 +23,7 @@ public:
 	void demolishUnusedFactories();
 	void increasePrices();
 	int getBankruptProducer();
+	void initializeModel(Model & model);
 	void initializeModel();
 	void transferSalaries();
 	int chooseProductType();
@@ -34,6 +35,7 @@ public:
 	int getNumberOfProducers();
 	void realizeOrders();
 	void producersPayments();
+	Model& getModel();
 
 	static Producer& getProducer(int id);
 	static Consumer& getConsumer(int id);

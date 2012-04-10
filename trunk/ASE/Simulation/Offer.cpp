@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Offer.cpp
 //  Implementation of the Class Offer
-//  Created on:      07-kwi-2012 00:10:40
-//  Original author: Mateusz
+//  Created on:      07-04-2012 00:10:40
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "Offer.h"

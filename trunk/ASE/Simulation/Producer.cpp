@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Producer.cpp
 //  Implementation of the Class Producer
-//  Created on:      03-kwi-2012 23:54:54
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:54:54
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "Producer.h"
@@ -12,13 +12,15 @@
 using namespace std;
 
 int Producer::idGenerator = 0;
-int Producer::threshold = 50;
 
-Producer::Producer(double cash) : cash(cash), numberOfProducts(0), numberOfCompletedOrders(0), id(++idGenerator), ordersIterator(0), productIterator(0)
+Producer::Producer(double cash, int threshold, vector<double> costs, vector<double> lengths) : cash(cash), numberOfProducts(0), numberOfCompletedOrders(0), id(++idGenerator), ordersIterator(0), productIterator(0), threshold(threshold)
 {
 	for(int i = 0; i < 5; i++)
-		productsPrices[i] = SimulationManager::randomNumberGenerator(2*DEFAULT_PRODUCT_MANUFACTURING_COST, 10 * DEFAULT_PRODUCT_MANUFACTURING_COST);
-
+	{
+		productsCosts[i] = costs[i];
+		productsLengths[i] = lengths[i];
+		productsPrices[i] = SimulationManager::randomNumberGenerator(2 * productsCosts[i], 10 * productsCosts[i]);
+	}
 	factories.push_back(Factory());
 }
 

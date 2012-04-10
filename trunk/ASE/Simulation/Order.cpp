@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Order.cpp
 //  Implementation of the Class Order
-//  Created on:      03-kwi-2012 23:55:03
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:55:03
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "Order.h"
