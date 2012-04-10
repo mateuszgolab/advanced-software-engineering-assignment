@@ -9,7 +9,7 @@ protected :
 	SimulationPresenter p;
 	SimulationManager m;
 
-	SimulationPresenterTest() : p(m)
+	SimulationPresenterTest() : p(m, "test.txt")
 	{
 
 	}
@@ -18,10 +18,12 @@ protected :
 
 TEST_F(SimulationPresenterTest, screenOutputTest)
 {
+
+
 	try
 	{
-		m.initializeModel();
-		ofstream os;
+			m.initializeModel();
+	ofstream os;
 		p.showBankruptcy(os, 1);
 		p.showSimulationState(os);
 	}
@@ -37,7 +39,7 @@ TEST_F(SimulationPresenterTest, fileOutputTest)
 	try
 	{
 		m.initializeModel();
-		p.saveResults("test.txt");
+		p.saveResults();
 		ifstream f("test.txt");
 
 		EXPECT_TRUE(f);
@@ -46,4 +48,5 @@ TEST_F(SimulationPresenterTest, fileOutputTest)
 	{
 		EXIT_FAILURE;
 	}
+	
 }

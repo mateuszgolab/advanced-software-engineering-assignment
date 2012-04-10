@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Consumer.h
 //  Implementation of the Class Consumer
-//  Created on:      03-kwi-2012 23:54:57
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:54:57
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #if !defined(EA_4C8BA131_6174_46eb_84BC_52EFDD82A7BD__INCLUDED_)

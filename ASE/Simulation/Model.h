@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Model.h
 //  Implementation of the Class Model
-//  Created on:      03-kwi-2012 23:55:05
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:55:05
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #if !defined(EA_99D29BE5_0334_4416_82A3_3571A7F7D8FB__INCLUDED_)
@@ -35,16 +35,17 @@ public:
 	Model();
 	virtual ~Model();
 
-	void setConsumerCash(double cash, double var);
+	void setConsumerCash(double cash);
 	void setFactoryConstructionCost(double cost);
 	void setFactoryRunningCost(double cost);
 	void setIdleFactoryStartUpCost(double cost);
 	void setNumberOfConsumers(int numberOfConsumers);
 	void setNumberOfProducers(int numberOfProducers);
-	void setProducerCash(double cash, double var);
+	void setProducerCash(double cash);
 	void setProductManufacturingCost(std::vector<double> costs);
-	void setProductManufacturingTime(std::vector<int> cycles);
+	void setProductManufacturingTime(std::vector<double> cycles);
 	void setQueueOrdersThreshold(int threshold);
+	void setConsumerSalary(double salary);
 	int getNumberOfProducers() const;
 	int getNumberOfConsumers() const;
 	double getCashPerProducer() const;
@@ -54,19 +55,23 @@ public:
 	double getFactoryConstructionCost() const;
 	double getIdleFactoryStartupCost() const;
 	int getQueueOrdersThreshold() const;
+	std::vector<double> getProductCosts();
+	std::vector<double> getProductLengths();
 
 private:
 	double cashPerConsumer;
 	double cashPerProducer;
-	double consumerCashOscilation;
+	//double consumerCashOscilation;
 	double consumerSalary;
 	double factoryConstructionCost;
 	double factoryRunningCost;
 	double idleFactoryStartUpCost;
 	int numberOfConsumers;
 	int numberOfProducers;
-	double producerCashOscilation;
+	//double producerCashOscilation;
 	int queueOrdersThreshold;
+	std::vector<double> productCosts;
+	std::vector<double> productLengths;
 
 };
 #endif // !defined(EA_99D29BE5_0334_4416_82A3_3571A7F7D8FB__INCLUDED_)

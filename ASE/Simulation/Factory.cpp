@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Factory.cpp
 //  Implementation of the Class Factory
-//  Created on:      04-kwi-2012 12:40:28
-//  Original author: Mateusz
+//  Created on:      04-04-2012 12:40:28
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "Factory.h"
@@ -82,4 +82,9 @@ void Factory::setState(FactoryState state)
 void Factory::incIdleTime()
 {
 	idleTime++;
+}
+
+void Factory::setIdleStartUpCost(double cost)
+{
+	startUpCost = cost;
 }

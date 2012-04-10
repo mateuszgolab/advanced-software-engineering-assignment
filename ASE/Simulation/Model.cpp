@@ -1,8 +1,8 @@
 ///////////////////////////////////////////////////////////
 //  Model.cpp
 //  Implementation of the Class Model
-//  Created on:      03-kwi-2012 23:55:05
-//  Original author: Mateusz
+//  Created on:      03-04-2012 23:55:05
+//  Original author: Mateusz Golab
 ///////////////////////////////////////////////////////////
 
 #include "Model.h"
@@ -10,19 +10,22 @@
 
 using namespace std;
 
-Model::Model() : cashPerConsumer(DEFAULT_CONSUMER_CASH), cashPerProducer(DEFAULT_PRODUCER_CASH), consumerCashOscilation(DEFAULT_CASH_OSCILATION), numberOfConsumers(DEFAULT_NUMBER_OF_CONSUMERS), 
+Model::Model() : cashPerConsumer(DEFAULT_CONSUMER_CASH), cashPerProducer(DEFAULT_PRODUCER_CASH), numberOfConsumers(DEFAULT_NUMBER_OF_CONSUMERS), 
 	numberOfProducers(DEFAULT_NUMBER_OF_PRODUCERS), consumerSalary(DEFAULT_CONSUMER_SALARY), factoryConstructionCost(DEFAULT_FACTORY_CONSTRUCTION_COST), factoryRunningCost(DEFAULT_FACTORY_RUNNING_COST), 
-	idleFactoryStartUpCost(DEFAULT_IDLE_FACTORY_STARTUP_COST), producerCashOscilation(DEFAULT_CASH_OSCILATION), queueOrdersThreshold(DEFAULT_QUEUE_THRESHOLD)
+	idleFactoryStartUpCost(DEFAULT_IDLE_FACTORY_STARTUP_COST), queueOrdersThreshold(DEFAULT_QUEUE_THRESHOLD)
 {
-	
-	
+	for(int i = 0; i < 5; i++)
+	{
+		productCosts.push_back(DEFAULT_PRODUCT_MANUFACTURING_COST);
+		productLengths.push_back(DEFAULT_PRODUCT_MANUFACTURING_LENGTH);
+	}
 }
 
 Model::~Model(){
 
 }
 
-void Model::setConsumerCash(double cash, double var = 10.0)
+void Model::setConsumerCash(double cash)
 {
 	cashPerConsumer = cash;
 }
@@ -52,19 +55,19 @@ void Model::setNumberOfProducers(int numberOfProducers)
 	this->numberOfProducers = numberOfProducers;
 }
 
-void Model::setProducerCash(double cash, double var = 10.0)
+void Model::setProducerCash(double cash)
 {
 	cashPerProducer = cash;
 }
 
 void Model::setProductManufacturingCost(vector<double> costs)
 {
-	
+	productCosts = costs;
 }
 
-void Model::setProductManufacturingTime(vector<int> cycles)
+void Model::setProductManufacturingTime(vector<double> cycles)
 {
-
+	productLengths = cycles;
 }
 
 void Model::setQueueOrdersThreshold(int threshold)
@@ -115,4 +118,19 @@ double Model::getIdleFactoryStartupCost() const
 int Model::getQueueOrdersThreshold() const
 {
 	return queueOrdersThreshold;
+}
+
+void Model::setConsumerSalary(double salary)
+{
+	consumerSalary = salary;
+}
+
+vector<double> Model::getProductCosts() 
+{
+	return productCosts;
+}
+
+vector<double> Model::getProductLengths() 
+{
+	return productLengths;
 }

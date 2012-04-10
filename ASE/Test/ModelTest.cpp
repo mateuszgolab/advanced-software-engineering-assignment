@@ -14,14 +14,14 @@ protected :
 TEST_F(ModelTest, customerCashTest)
 {
 	EXPECT_EQ(DEFAULT_CONSUMER_CASH, m.getCashPerConsumer());
-	m.setConsumerCash(1000.0, 0.0);
+	m.setConsumerCash(1000.0);
 	EXPECT_EQ(1000.0, m.getCashPerConsumer());
 }
 
 TEST_F(ModelTest, producerCashTest)
 {
 	EXPECT_EQ(DEFAULT_PRODUCER_CASH, m.getCashPerProducer());
-	m.setProducerCash(1000.0, 0.0);
+	m.setProducerCash(1000.0);
 	EXPECT_EQ(1000.0, m.getCashPerProducer());
 }
 

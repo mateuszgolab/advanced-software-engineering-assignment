@@ -52,7 +52,7 @@ TEST_F(OrderTest, isCompletedTest2)
 	m.initializeModel();
 
 
-	Producer pr(90000);
+	Producer pr(90000, DEFAULT_QUEUE_THRESHOLD, m.getModel().getProductCosts(), m.getModel().getProductLengths());
 	pr.acceptOrder(o);
 	
 	for(int i = 0; i < 100; i++)
