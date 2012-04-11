@@ -61,14 +61,12 @@ public:
 private:
 	double cashPerConsumer;
 	double cashPerProducer;
-	//double consumerCashOscilation;
 	double consumerSalary;
 	double factoryConstructionCost;
 	double factoryRunningCost;
 	double idleFactoryStartUpCost;
 	int numberOfConsumers;
 	int numberOfProducers;
-	//double producerCashOscilation;
 	int queueOrdersThreshold;
 	std::vector<double> productCosts;
 	std::vector<double> productLengths;

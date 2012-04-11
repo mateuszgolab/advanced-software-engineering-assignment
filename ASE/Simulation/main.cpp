@@ -10,6 +10,7 @@ int main()
 
 	SimulationManager manager(model);
 	SimulationPresenter presenter(manager, "results.txt");
+	presenter.showWelcome(cout);
 	if(!presenter.setParameters(cout)) return 0;
 	manager.initializeModel(presenter.getModel());
 	
