@@ -38,7 +38,7 @@ public:
 	void increasePrices(double percentage);
 	Product & getProduct();
 	Factory& getFactory(int index);
-	int threshold;
+	
 
 private:
 	int id;
@@ -52,6 +52,7 @@ private:
 	int numberOfCompletedOrders;
 	int ordersIterator;
 	int productIterator;
+	int threshold;
 
 	static int idGenerator;
 

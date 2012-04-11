@@ -30,7 +30,7 @@ public:
 private:
 	double cash;
 	double salary;
-	double id;
+	int id;
 	ConsumerState state;
 	static int idGenerator;
 
